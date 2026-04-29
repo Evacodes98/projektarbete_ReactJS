@@ -1,27 +1,33 @@
 import { useState, useEffect } from 'react';
 
 function Home() {
-const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-useEffect(() => {
-  console.log("Home effect ran");
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch("https://dummyjson.com/products");
-      const data = await res.json();
-      setProducts(data.products);
-      console.log(data.products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://dummyjson.com/products");
+        const data = await res.json();
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  fetchProducts();
-}, []);
+    fetchProducts();
+  }, []);
 
-  return <>
-  <h3> Home - banner längst upp med produkt</h3>
-  </>;
+  return (
+    <>
+      <h3>Home - banner längst upp med produkt</h3>
+      {products.map((product) => (
+        <div key={product.id}>
+          <h4>{product.title}</h4>
+          <p>{product.description}</p>
+        </div>
+      ))}
+    </>
+  );
 }
 
 export default Home;
