@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -21,10 +23,9 @@ function Home() {
     <>
       <h3>Home - banner längst upp med produkt</h3>
       {products.map((product) => (
-        <div key={product.id}>
-          <h4>{product.title}</h4>
-          <p>{product.description}</p>
-        </div>
+        <Link key={product.id} to={`/product/${product.id}`}>
+          <ProductCard product={product} />
+        </Link>
       ))}
     </>
   );
