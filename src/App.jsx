@@ -5,10 +5,12 @@ import Home from './pages/Home'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
+import { CartProvider } from './context/CartContext'
 
 function App() {
   return (
     <>
+      <CartProvider>
       <Navbar />
 
       <Routes>
@@ -19,6 +21,8 @@ function App() {
       </Routes>
 
       <Footer />
+    </CartProvider>
+
     </>
   )
 }
