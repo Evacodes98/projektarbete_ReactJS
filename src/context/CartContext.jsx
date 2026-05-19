@@ -1,4 +1,4 @@
-console.log("CART CONTEXT FILE LOADED");
+
 import { createContext, useContext, useState, useEffect } from "react";
 
 
