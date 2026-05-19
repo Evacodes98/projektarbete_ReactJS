@@ -1,0 +1,119 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    width: auto;
+    height: 80px;
+}
+.InputContainer {
+  width: 425px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #e3d5ff, rgb(255, 231, 231));
+  border-radius: 30px;
+  overflow: visible;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  transition: all 0.3s ease-in-out;
+  position: relative; /* Ensure dropdown is positioned relative to the search bar */
+}
+.InputContainer:hover {
+  transform: scale(1.02);
+  transition: all 0.3s ease-in-out;
+}
+
+.input {
+  width: 400px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: rgb(255, 81, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: rgb(19, 19, 19);
+  font-size: 13.4px;
+}
+
+
+.navbar button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 0px;
+    cursor: pointer;
+}
+
+.navbar .icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.navbar h2 {
+    color: #333;
+    margin: 0;
+    font-size: 24px;
+    cursor: pointer;
+    font-style: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar h2:hover {
+    color: #555;
+    font-style: italic;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .search-bar {
+  position: relative; /* Ensure the search bar container is the reference for the dropdown */
+}
+
+.dropdown {
+  position: absolute;
+  color: #333;
+  text-align: left;
+  top: calc(100% + 10px); /* Position the dropdown directly below the search bar */
+  left: 0;
+  width: 100%; /* Match the width of the search bar */
+  background: white;
+  border: 2px solid #e3d5ff;
+  border-radius: 8px;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  box-sizing: border-box; /* Ensure padding and borders are included in dimensions */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
+}
+
+.dropdown::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #eeeeee;
+}
+
+.dropdown-item span {
+padding-left: 10px;
+}
+.dropdown-img {
+  width: 10%;
+  height: 10%;
+  object-fit: cover;
+}

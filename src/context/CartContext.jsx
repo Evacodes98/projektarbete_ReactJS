@@ -1,13 +1,21 @@
 console.log("CART CONTEXT FILE LOADED");
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+
 
 export const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
-  console.log("PROVIDER CART VALUE:", cart);
+  const [search, setSearch] = useState("");
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+  fetch("https://dummyjson.com/products")
+    .then(res => res.json())
+    .then(data => setProducts(data.products));
+}, []);
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <CartContext.Provider value={{ cart, setCart, search, setSearch, products, setProducts }}>
       {children}
     </CartContext.Provider>
   );
