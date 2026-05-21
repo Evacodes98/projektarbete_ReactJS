@@ -1,0 +1,30 @@
+.category-bar {
+    display: flex;
+padding: 0%;
+  top: 100px; /* height of navbar */
+  z-index: 10;
+  background: #f0f0f0;
+}
+
+.category-btn {
+    color: #555;
+  flex: 1;
+  padding: 12px 0;
+  background: #f0f0f0;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.category-btn.active {
+    font-weight: bold;
+text-decoration: underline;
+
+}
+
+.category-btn:hover {
+  text-decoration: underline;
+  transition: all 0.3s ease-in-out;
+}
+

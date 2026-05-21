@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Hero.css";
 
 const images = [
@@ -18,18 +18,35 @@ function Hero() {
     setIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  useEffect(() => {
+  const interval = setInterval(() => {
+    next();
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, [index]);
+
   return (
-    <div className="hero">
-      <img src={images[index]} alt="hero" className="hero-img" />
+<div className="hero">
+  <div
+    className="hero-slider"
+    style={{
+      transform: `translateX(-${index * 100}%)`,
+    }}
+  >
+    {images.map((img, i) => (
+      <img key={i} src={img} alt="hero" className="hero-img" />
+    ))}
+  </div>
 
-      <button className="hero-btn left" onClick={prev}>
-        ‹
-      </button>
+  <button className="hero-btn left" onClick={prev}>
+    ⇦
+  </button>
 
-      <button className="hero-btn right" onClick={next}>
-        ›
-      </button>
-    </div>
+  <button className="hero-btn right" onClick={next}>
+    ⇨
+  </button>
+</div>
   );
 }
 
