@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import BasicButtons from "../components/Button";
 import { useCart } from "../context/CartContext";
+import "./Product.css";
 
 function Product() {
   const { id } = useParams();
@@ -10,13 +10,9 @@ function Product() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const res = await fetch(`https://dummyjson.com/products/${id}`);
-        const data = await res.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
+      const res = await fetch(`https://dummyjson.com/products/${id}`);
+      const data = await res.json();
+      setProduct(data);
     };
 
     fetchProduct();
@@ -24,33 +20,43 @@ function Product() {
 
   if (!product) return <p>Loading...</p>;
 
-const handleAddToCart = () => {
-  const existingItem = cart.find(item => item.id === product.id);
+  const handleAddToCart = () => {
+    const existing = cart.find((item) => item.id === product.id);
 
-  if (existingItem) {
-    setCart(prev =>
-      prev.map(item =>
+    if (existing) {
+      const updated = cart.map((item) =>
         item.id === product.id
           ? { ...item, quantity: item.quantity + 1 }
           : item
-      )
-    );
-  } else {
-    setCart(prev => [...prev, { ...product, quantity: 1 }]);
-  }
-
-  console.log(`Added ${product.title} to cart!`);
-};
+      );
+      setCart(updated);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  };
 
   return (
-    <div key ={product.id}>
-      <img src={product.thumbnail} alt={product.title} />
-      <h4>{product.title}</h4>
-      <p>{product.price}</p>
-      <p>{product.description}</p>
-      <p>{product.rating}</p>
-      <p>{product.stock}</p>
-      <BasicButtons onClick={handleAddToCart} />
+    <div className="product-page">
+
+      <div className="product-image">
+        <img src={product.thumbnail} alt={product.title} />
+      </div>
+
+      <div className="product-details">
+        <h1>{product.title}</h1>
+
+        <p className="price">${product.price}</p>
+
+        <p className="description">{product.description}</p>
+
+        <p>Rating: ⭐ {product.rating}</p>
+        <p>Stock: {product.stock}</p>
+
+        <button onClick={handleAddToCart}>
+          Add to Cart
+        </button>
+      </div>
+
     </div>
   );
 }

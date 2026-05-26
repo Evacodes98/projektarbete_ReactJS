@@ -1,30 +1,61 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Climate+Crisis:YEAR@1979&family=Short+Stack&display=swap');
+:root {
+    --link-color: rgb(73, 19, 104);
+    --link-underline-padding: .5em;
+}
 .category-bar {
-    display: flex;
+  display: flex;
 padding: 0%;
-  top: 100px; /* height of navbar */
   z-index: 10;
   background: #f0f0f0;
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 .category-btn {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 200;
     color: #555;
   flex: 1;
   padding: 12px 0;
   background: #f0f0f0;
   border: none;
-  font-size: 16px;
+  font-size: 24px;
   cursor: pointer;
     transition: all 0.3s ease-in-out;
+        color: var(--link-color);
+    display: inline-block;
+    padding: 0 var(--link-underline-padding);
+    text-decoration: none;
 }
 
 .category-btn.active {
-    font-weight: bold;
-text-decoration: underline;
+    font-weight: 800;
+color: #5c3aa0;
 
 }
 
 .category-btn:hover {
-  text-decoration: underline;
+    font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
 
+.category-btn:after {
+    background-color: var(--link-color);
+    content: '';
+    display: block;
+    height: .1em;
+    margin-left: calc(var(--link-underline-padding) * -1);
+    margin-top: .2em;
+    transition: width .5s;
+    width: 0;
+}
+
+.category-btn:hover:after {
+    width: calc(100% + var(--link-underline-padding) * 2);
+}
+
+.category-btn.active:after {
+    width: calc(100% + var(--link-underline-padding) * 2);
+}

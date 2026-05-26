@@ -39,7 +39,7 @@ const navigate = useNavigate();
 <nav className="navbar">
   <div>
     <Link to="/" className="logo-link"> 
-      <h2>ShopName</h2>
+      <h2>Hush Home</h2>
     </Link>
   </div>
 
@@ -70,8 +70,8 @@ const navigate = useNavigate();
     </div>
 
   <div>
-    <button><PersonIcon /></button>
-    <button><FavoriteIcon /></button>
+    <button style={{ padding: '0px' }}><PersonIcon /></button>
+    <button style={{ padding: '10px' }}><FavoriteIcon /></button>
     <Link to="/cart" className="icon-link">
       <CartBadge count={cartCount} />
     </Link>

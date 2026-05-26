@@ -1,27 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Climate+Crisis:YEAR@1979&family=Short+Stack&display=swap');
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(4, minmax(270px, 270px));
+  gap: 50px;
+  padding: 100px;
+  padding-top: 30px;
+  justify-content: center;
 }
 
-.product-card a:link {
+.product-grid a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-grid a:visited,
+.product-grid a:hover,
+.product-grid a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card a {
   text-decoration: none;
   color: inherit;
 }
 
 .product-card {
-  background: white;
-  border: 2px solid #e3d5ff;
-  border-radius: 8px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(white, white) padding-box,
+linear-gradient(to bottom, #e3d5ff, rgb(255, 231, 231)) border-box;
   padding: 15px;
-  text-align: center;
+  text-align: left;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  transition: all 0.3s ease-in-out;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .image-wrapper {
@@ -34,7 +54,7 @@
 .image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .product-info {
@@ -44,16 +64,41 @@
 }
 
 .product-info h4 {
-  font-size: 14px;
+  font-size: 1rem;
   margin: 0;
   height: 40px;
-  overflow: hidden;
+font-family: 'Bricolage Grotesque', sans-serif;
 
 }
 
 .price {
   margin-top: 8px;
   font-weight: bold;
-  color: #222;
+  color: #8d8d8d;
   text-decoration: none;
+  font-size: 0.5rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 500;
 }
+
+.add-cart-btn {
+  width: calc(100% - 24px);
+  margin: 0 12px 12px;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(white, white) padding-box,
+linear-gradient(to bottom, #e3d5ff, rgb(255, 231, 231)) border-box;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 500;
+}
+
+.add-cart-btn:hover {
+  background: lavender;
+    transition: 0.2s ease;
+}
+

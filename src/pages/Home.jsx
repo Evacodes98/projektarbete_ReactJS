@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import Hero from "../components/Hero";
 import CategoryBar from "../components/CategoryBar";
+import "./Home.css";
+
 
 
 function Home() {
@@ -58,11 +60,13 @@ function Home() {
         onCategorySelect={setSelectedCategory}
       />
       <Hero />
+      <h2 className="title">Featured Products</h2>
 <div className="product-grid">
   {visibleProducts.map((product) => (
-    <Link key={product.id} to={`/product/${product.id}`}>
-      <ProductCard product={product} />
-    </Link>
+<ProductCard
+  key={product.id}
+  product={product}
+/>
   ))}
 </div>
     </>

@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Climate+Crisis:YEAR@1979&family=Short+Stack&display=swap');
+
+.title {
+  font-family: 'Climate Crisis', sans-serif;
+  color: #5c3aa0;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 32px;
+}

@@ -1,0 +1,38 @@
+.product-page {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.product-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.description {
+  margin: 20px 0;
+  color: #555;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}

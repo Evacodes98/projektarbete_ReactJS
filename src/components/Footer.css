@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Climate+Crisis:YEAR@1979&family=Short+Stack&display=swap');
+
+.footer {
+  background: #f8f8f8;
+  margin-top: 60px;
+  padding: 60px 20px 20px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  
+}
+
+.footer-brand h2 {
+  margin-bottom: 16px;
+  font-size: 28px;
+  font-family: 'Climate Crisis', sans-serif;
+  color: #5c3aa0;
+  text-align: left;
+}
+
+.footer-brand p {
+  color: #666;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.footer h4 {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-family: 'Climate Crisis', sans-serif;
+  color: #5c3aa0;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: #555;
+  transition: 0.2s ease;
+}
+
+.footer ul li a:hover {
+  color: #5c3aa0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  background: #5c3aa0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.social-icons a:hover {
+  background: #5c3aa0;
+}
+
+.footer-newsletter p {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.footer-newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-newsletter input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+}
+
+.footer-newsletter button {
+  padding: 12px;
+  border: none;
+  background: #5c3aa0;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.footer-newsletter button:hover {
+  opacity: 0.85;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ddd;
+  margin-top: 50px;
+  padding-top: 20px;
+  text-align: center;
+  color: #777;
+}
