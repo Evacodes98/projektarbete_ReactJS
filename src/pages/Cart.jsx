@@ -1,59 +1,96 @@
 import { useCart } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import "./Cart.css";
+import { Link } from "react-router-dom";
 
 function Cart() {
-  const value = useCart();
-  const navigate = useNavigate();
-  const total = value.cart.reduce((sum, item) => {
-    return sum + item.price * item.quantity;
-  }, 0);
+  const { cart, setCart } = useCart();
 
-  const isEmpty = value.cart.length === 0;
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  const increase = (id) => {
+    const updated = cart.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+    setCart(updated);
+  };
+
+  const decrease = (id) => {
+    const updated = cart
+      .map(item =>
+        item.id === id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+      .filter(item => item.quantity > 0);
+
+    setCart(updated);
+  };
+
+  const removeItem = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+  };
+
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className="cart-page">
 
-      {isEmpty ? (
+      <h1>Your Cart</h1>
+
+      {cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <>
-          {value.cart.map((product) => (
-            <div key={product.id}>
-              <img src={product.thumbnail} alt={product.title} />
-              <h4>{product.title}</h4>
-              <p>${product.price.toFixed(2)}</p>
-              <p>Quantity: {product.quantity}</p>
-              <button
-                onClick={() => {
-                  const updatedCart = value.cart
-                    .map((item) => {
-                      if (item.id === product.id) {
-                        return { ...item, quantity: item.quantity - 1 };
-                      }
-                      return item;
-                    })
-                    .filter((item) => item.quantity > 0);
+          <div className="cart-list">
 
-                  value.setCart(updatedCart);
-                }}
-              >
-                Remove
+            {cart.map(item => (
+              <div key={item.id} className="cart-item">
+
+                <img src={item.thumbnail} alt={item.title} />
+
+                <div className="cart-info">
+                  <h3>{item.title}</h3>
+
+                  <p>${item.price}</p>
+
+                  <div className="cart-controls">
+
+                    <button onClick={() => decrease(item.id)}>−</button>
+
+                    <span>{item.quantity}</span>
+
+                    <button onClick={() => increase(item.id)}>+</button>
+
+                  </div>
+
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeItem(item.id)}
+                  >
+                    Remove
+                  </button>
+
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+
+          <div className="cart-summary">
+            <h2>Total: ${total.toFixed(2)}</h2>
+
+            <Link to="/checkout">
+              <button className="checkout-btn">
+                Proceed to Checkout
               </button>
-            </div>
-          ))}
-
-          <h3>Total: ${total.toFixed(2)}</h3>
+            </Link>
+          </div>
         </>
       )}
-
-      <button
-        onClick={() => {
-          if (!isEmpty) navigate("/checkout");
-        }}
-        disabled={isEmpty}
-      >
-        Proceed to checkout
-      </button>
     </div>
   );
 }

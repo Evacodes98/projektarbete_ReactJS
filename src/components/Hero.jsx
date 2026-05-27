@@ -40,11 +40,11 @@ function Hero() {
   </div>
 
   <button className="hero-btn left" onClick={prev}>
-    ⇦
+    
   </button>
 
   <button className="hero-btn right" onClick={next}>
-    ⇨
+    
   </button>
 </div>
   );
