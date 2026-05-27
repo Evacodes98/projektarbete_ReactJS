@@ -1,6 +1,7 @@
 import { useCart } from "../context/CartContext";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart() {
   const { cart, setCart } = useCart();
@@ -41,7 +42,7 @@ function Cart() {
       <h1>Your Cart</h1>
 
       {cart.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p>Your cart is empty!</p>
       ) : (
         <>
           <div className="cart-list">
@@ -70,7 +71,7 @@ function Cart() {
                     className="remove-btn"
                     onClick={() => removeItem(item.id)}
                   >
-                    Remove
+                    <DeleteIcon />
                   </button>
 
                 </div>
@@ -82,6 +83,7 @@ function Cart() {
 
           <div className="cart-summary">
             <h2>Total: ${total.toFixed(2)}</h2>
+            <p>Shipping and taxes calculated at checkout.</p>
 
             <Link to="/checkout">
               <button className="checkout-btn">

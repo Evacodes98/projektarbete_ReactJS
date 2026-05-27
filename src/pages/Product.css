@@ -14,6 +14,7 @@
   margin-bottom: 10px;
   font-size: 2rem;
   line-height: 1.1;
+  text-align: left;
 }
 .product-page .brand {
   font-family: "Bricolage Grotesque", sans-serif;
@@ -78,6 +79,9 @@
   border: 2px solid #5c3aa0;
   border-radius: 10px;
   overflow: hidden;
+  color: #151515;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 24px;
 }
 
 .quantity-selector button {
@@ -86,7 +90,7 @@
   border: none;
   background: #5c3aa000;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 24px;
   transition: 0.2s ease;
   color: #5c3aa0;
 }

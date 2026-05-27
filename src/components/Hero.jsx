@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Hero.css";
+import CurvedLoop from '../component/CurvedLoop';
 
 const images = [
   "https://images.unsplash.com/photo-1571779719707-0f24f62ab4fc",
@@ -38,6 +39,14 @@ function Hero() {
       <img key={i} src={img} alt="hero" className="hero-img" />
     ))}
   </div>
+<CurvedLoop 
+  marqueeText="New Product Drop ✦"
+  speed={2}
+  curveAmount={400}
+  direction="right"
+  interactive
+  className="custom-text-style"
+/>
 
   <button className="hero-btn left" onClick={prev}>
     

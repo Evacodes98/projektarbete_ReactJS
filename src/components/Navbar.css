@@ -10,7 +10,7 @@
   height: 80px;
 }
 
-.navbar h2 {
+.navbar .shiny-text {
   font-family: "Climate Crisis", sans-serif;
 }
 
@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-.navbar h2 {
+.navbar .shiny-text {
   color: #333;
   margin: 0;
   font-size: 1.5rem;
@@ -76,10 +76,11 @@
   transition: all 0.3s ease-in-out;
 }
 
-.navbar h2:hover {
+.navbar .shiny-text:hover {
   color: #555;
   font-style: italic;
   transition: all 0.3s ease-in-out;
+  transform:scale(1.05);
 }
 
 .navbar .search-bar {
@@ -92,7 +93,7 @@
   text-align: left;
   top: calc(
     100% + 10px
-  ); /* Position the dropdown directly below the search bar */
+  );
   left: 0;
   width: 100%;
   background: white;
