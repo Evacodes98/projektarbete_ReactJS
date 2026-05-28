@@ -153,3 +153,70 @@ border-radius: 12px;
   color: white;
   transform: scale(1.05);
 }
+
+.cart-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sale-price {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 14px;
+}
+
+.total-savings {
+  color: #5c3aa0;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+/* EMPTY CART STYLES */
+.empty-cart {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.empty-cart h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #5c3aa0;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.empty-cart p {
+  color: #666;
+  margin-bottom: 20px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+
+.shop-btn {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  border: #5c3aa0 solid 2px;
+  color: #5c3aa0;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shop-btn:hover {
+  background: #5c3aa0;
+  color: white;
+  transform: scale(1.05);
+}

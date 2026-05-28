@@ -99,3 +99,40 @@
   background: lavender;
   transition: 0.2s ease;
 }
+
+
+.product-card {
+  position: relative;
+}
+
+/* sale badge */
+.sale-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #beb2d6;
+  color: rgb(255, 255, 255);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* prices */
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sale-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 14px;
+}

@@ -62,11 +62,12 @@ function Home() {
       <Hero />
       <h2 className="title">Featured Products</h2>
 <div className="product-grid">
-  {visibleProducts.map((product) => (
-<ProductCard
-  key={product.id}
-  product={product}
-/>
+  {visibleProducts.map((product, index) => (
+    <ProductCard
+      key={product.id}
+      product={product}
+      index={index}
+    />
   ))}
 </div>
     </>

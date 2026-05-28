@@ -10,7 +10,7 @@
   height: 80px;
 }
 
-.navbar .shiny-text {
+.navbar h2 {
   font-family: "Climate Crisis", sans-serif;
 }
 
@@ -37,7 +37,7 @@
   height: 40px;
   border: none;
   outline: none;
-  caret-color: rgb(255, 81, 0);
+  caret-color: rgb(6, 7, 66);
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
   padding-left: 15px;
@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-.navbar .shiny-text {
+.navbar h2 {
   color: #333;
   margin: 0;
   font-size: 1.5rem;
@@ -76,7 +76,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.navbar .shiny-text:hover {
+.navbar h2:hover {
   color: #555;
   font-style: italic;
   transition: all 0.3s ease-in-out;

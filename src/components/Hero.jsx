@@ -41,7 +41,7 @@ function Hero() {
   </div>
 <CurvedLoop 
   marqueeText="New Product Drop ✦"
-  speed={2}
+  speed={1.2}
   curveAmount={400}
   direction="right"
   interactive

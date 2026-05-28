@@ -6,7 +6,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useCart } from "../context/CartContext";
 import {useNavigate} from "react-router-dom";
 import { useEffect, useRef } from "react";
-import ShinyText from './ShinyText';
 
 
 function Navbar() {
@@ -40,7 +39,7 @@ const navigate = useNavigate();
 <nav className="navbar">
   <div>
     <Link to="/" className="logo-link"> 
-      <ShinyText text="Hush Home" />
+      <h2>Hush Home</h2>
     </Link>
   </div>
 
