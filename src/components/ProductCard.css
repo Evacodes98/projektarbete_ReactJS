@@ -136,3 +136,21 @@
   color: #888;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(250px, 200px));
+      gap: 50px;
+  padding: 100px;
+  padding-top: 30px;
+  }
+}
+
+@media (max-width: 425px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 50px 30px;
+    padding-top: 30px;
+   }  
+  }

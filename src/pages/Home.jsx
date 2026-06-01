@@ -5,12 +5,16 @@ import { useCart } from "../context/CartContext";
 import Hero from "../components/Hero";
 import CategoryBar from "../components/CategoryBar";
 import "./Home.css";
+import { useSearchParams } from "react-router-dom";
 
 
 
 function Home() {
+  const [searchParams] = useSearchParams();
+
+const selectedCategory =
+  searchParams.get("category") || "All";
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const { search } = useCart();
 
@@ -38,12 +42,13 @@ function Home() {
     fetchProducts();
   }, []);
 
-  const categoryFiltered =
-    selectedCategory === "All"
-      ? products
-      : products.filter(
-          (product) => product.category === selectedCategory
-        );
+const categoryFiltered =
+  selectedCategory === "All"
+    ? products
+    : products.filter(
+        (product) =>
+          product.category === selectedCategory
+      );
 
   const filteredProducts = categoryFiltered.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
@@ -54,11 +59,10 @@ function Home() {
   return (
     <>
 
-      <CategoryBar
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategorySelect={setSelectedCategory}
-      />
+     <CategoryBar
+  categories={categories}
+  selectedCategory={selectedCategory}
+/>
       <Hero />
       <h2 className="title">Featured Products</h2>
 <div className="product-grid">

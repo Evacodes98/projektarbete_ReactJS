@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./Product.css";
 import Rating from "@mui/material/Rating";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 function Product() {
   const { id } = useParams();
@@ -19,11 +19,18 @@ function Product() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const res = await fetch(`https://dummyjson.com/products/${id}`);
-      const data = await res.json();
+      try {
+        const res = await fetch(`https://dummyjson.com/products/${id}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch product");
+        }
+        const data = await res.json();
 
-      setProduct(data);
-      setSelectedImage(data.images?.[0] ?? data.thumbnail);
+        setProduct(data);
+        setSelectedImage(data.images?.[0] ?? data.thumbnail);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
     };
 
     fetchProduct();
@@ -38,7 +45,7 @@ function Product() {
       const updated = cart.map((item) =>
         item.id === product.id
           ? { ...item, quantity: item.quantity + quantity }
-          : item
+          : item,
       );
       setCart(updated);
     } else {
@@ -56,28 +63,25 @@ function Product() {
 
   return (
     <div className="product-page">
-
       {/* Image section */}
       <div className="product-image">
         <img src={selectedImage} alt={product.title} />
 
-<div className="thumbnail-row">
-  {product.images?.slice(0, 3).map((img, index) => (
-    <img
-      key={index}
-      src={img}
-      alt="thumbnail"
-      className={`thumbnail ${selectedImage === img ? "active" : ""}`}
-      onClick={() => setSelectedImage(img)}
-    />
-  ))}
-</div>
-        
+        <div className="thumbnail-row">
+          {product.images?.slice(0, 3).map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt="thumbnail"
+              className={`thumbnail ${selectedImage === img ? "active" : ""}`}
+              onClick={() => setSelectedImage(img)}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Details */}
       <div className="product-details">
-
         <p className="brand">{product.brand}</p>
         <h1>{product.title}</h1>
 
@@ -94,7 +98,6 @@ function Product() {
         <p className="description">{product.description}</p>
 
         <div className="product-actions">
-
           <div className="quantity-selector">
             <button onClick={decrease}>−</button>
             <span>{quantity}</span>
@@ -104,13 +107,9 @@ function Product() {
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
             Add to Cart
           </button>
-
         </div>
 
-        <button className="wishlist-btn">
-          ♡ Add to Wishlist
-        </button>
-
+        <button className="wishlist-btn">♡ Add to Wishlist</button>
       </div>
     </div>
   );

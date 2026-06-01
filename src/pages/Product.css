@@ -171,3 +171,21 @@
 .thumbnail-row .thumbnail.active {
   border: 2px solid #5c3aa0;
 }
+
+@media (max-width: 768px) {
+  .product-page {
+    flex-direction: column;
+    padding: 10px 50px 10px 50px;
+  }
+
+  .product-image > img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .product-page {
+    padding: 10px 20px;
+  }
+}

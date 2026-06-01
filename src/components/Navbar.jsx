@@ -7,13 +7,21 @@ import { useCart } from "../context/CartContext";
 import { useEffect, useRef, useState } from "react";
 
 function Navbar() {
-  
   const [menuOpen, setMenuOpen] = useState(false);
+  const [localSearch, setLocalSearch] = useState("");
 
   const { cart, search, setSearch, products } = useCart();
 
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearch(localSearch);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [localSearch, setSearch]);
 
   const cartCount = cart.reduce((sum, item) => {
     return sum + item.quantity;
@@ -21,16 +29,13 @@ function Navbar() {
 
   const suggestions = products
     .filter((product) =>
-      product.title.toLowerCase().includes(search.toLowerCase())
+      product.title.toLowerCase().includes(search.toLowerCase()),
     )
     .slice(0, 5);
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setSearch("");
       }
     }
@@ -38,22 +43,19 @@ function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [setSearch]);
 
   const categories = [
-  "All",
-  "beauty",
-  "fragrances",
-  "furniture",
-  "groceries",
-  "home-decoration",
-  "kitchen-accessories"
-];
+    "All",
+    "beauty",
+    "fragrances",
+    "furniture",
+    "groceries",
+    "home-decoration",
+    "kitchen-accessories",
+  ];
 
   return (
     <>
@@ -66,17 +68,12 @@ function Navbar() {
         </div>
 
         {/* CENTER SEARCH */}
-        <div
-          className="InputContainer"
-          ref={dropdownRef}
-        >
+        <div className="InputContainer" ref={dropdownRef}>
           <input
             type="text"
             placeholder="Search products..."
-            value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
+            value={localSearch}
+            onChange={(e) => setLocalSearch(e.target.value)}
             className="input"
           />
 
@@ -91,9 +88,7 @@ function Navbar() {
                     className="dropdown-item"
                     onClick={() => {
                       setSearch("");
-                      navigate(
-                        `/product/${item.id}`
-                      );
+                      navigate(`/product/${item.id}`);
                     }}
                   >
                     <img
@@ -112,87 +107,51 @@ function Navbar() {
         {/* RIGHT ICONS */}
         <div className="nav-icons">
           <button style={{ padding: "0px" }}>
-            <PersonIcon />
+            <PersonIcon sx={{ fontSize: 30 }} />
           </button>
 
-          <button style={{ padding: "10px" }}>
+          <Link to="/wishlist" className="icon-link">
             <FavoriteIcon />
-          </button>
+          </Link>
 
-          <Link
-            to="/cart"
-            className="icon-link"
-          >
+          <Link to="/cart" className="icon-link">
             <CartBadge count={cartCount} />
           </Link>
 
           <button
             className="hamburger-btn"
-            onClick={() =>
-              setMenuOpen(!menuOpen)
-            }
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             ☰
           </button>
         </div>
       </nav>
 
+      {/* BACKDROP */}
+      <div
+        className={`menu-backdrop ${menuOpen ? "show" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      />
+
       {/* MOBILE MENU */}
-      {menuOpen && (
-        <div className="mobile-menu">
-          
-          <button
-            className="close-menu"
-            onClick={() =>
-              setMenuOpen(false)
-            }
-          >
-            ✕
-          </button>
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <button className="close-menu" onClick={() => setMenuOpen(false)}>
+          ✕
+        </button>
 
-          <Link
-            to="/"
-            onClick={() =>
-              setMenuOpen(false)
-            }
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/cart"
-            onClick={() =>
-              setMenuOpen(false)
-            }
-          >
-            Cart
-          </Link>
-
-          <Link
-            to="/wishlist"
-            onClick={() =>
-              setMenuOpen(false)
-            }
-          >
-            Wishlist
-          </Link>
-
-          <div className="menu-section">
-  <h3>Categories</h3>
-
-  {categories.map((cat) => (
-    <Link
-      key={cat}
-      to={`/?category=${cat}`}
-      onClick={() => setMenuOpen(false)}
-      className="menu-item"
-    >
-      {cat}
-    </Link>
-  ))}
-</div>
+        <div className="menu-section">
+          {categories.map((cat) => (
+            <Link
+              key={cat}
+              to={`/?category=${cat}`}
+              onClick={() => setMenuOpen(false)}
+              className="menu-item"
+            >
+              {cat}
+            </Link>
+          ))}
         </div>
-      )}
+      </div>
     </>
   );
 }

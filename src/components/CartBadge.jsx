@@ -5,8 +5,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    right: -3,
-    top: 13,
+    right: 0,
+    top: 3,
     border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
     padding: '0 4px',
   },

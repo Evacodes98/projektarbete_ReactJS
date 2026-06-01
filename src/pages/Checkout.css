@@ -141,3 +141,33 @@
   background: #5c3aa0;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "summary"
+      "form";
+  }
+
+  .checkout-form {
+    grid-area: form;
+  }
+
+  .checkout-summary {
+    grid-area: summary;
+    position: static;
+  }
+}
+
+@media (max-width: 425px) {
+  .checkout-page {
+    width: 100%;
+    padding: 20px 10px;
+  }
+
+  .checkout-page h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+}

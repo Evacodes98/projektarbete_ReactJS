@@ -43,7 +43,7 @@ function Hero() {
   marqueeText="New Product Drop ✦"
   speed={1.2}
   curveAmount={400}
-  direction="right"
+  direction="left"
   interactive
   className="custom-text-style"
 />

@@ -19,7 +19,7 @@ useEffect(() => {
       {children}
     </CartContext.Provider>
   );
-}
+}z
 
 export function useCart() {
   return useContext(CartContext);

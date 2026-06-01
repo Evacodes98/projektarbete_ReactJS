@@ -1,21 +1,22 @@
 import "./CategoryBar.css";
+import { Link } from "react-router-dom";
 
-function CategoryBar({ categories, selectedCategory, onCategorySelect }) {
+function CategoryBar({ categories, selectedCategory, }) {
   return (
     <div className="category-bar">
       {categories.map((category) => (
-        <button
-          key={category}
-          className={
-            selectedCategory === category
-              ? "category-btn active"
-              : "category-btn"
-          }
-          onClick={() => onCategorySelect(category)}
-        >
-          {category}
-        </button>
-      ))}
+  <Link
+    key={category}
+    to={`/?category=${category}`}
+    className={
+      selectedCategory === category
+        ? "category-btn active"
+        : "category-btn"
+    }
+  >
+    {category}
+  </Link>
+))}
     </div>
   );
 }
