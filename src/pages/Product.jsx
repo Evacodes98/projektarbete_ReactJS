@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/UseCart";
 import "./Product.css";
 import Rating from "@mui/material/Rating";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 function Product() {
+  // Get product ID from URL params and cart context
   const { id } = useParams();
   const { cart, setCart } = useCart();
 
@@ -17,6 +18,7 @@ function Product() {
   const increase = () => setQuantity((prev) => prev + 1);
   const decrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
+    // Fetching products (Try/Catch for error handling) 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -36,8 +38,11 @@ function Product() {
     fetchProduct();
   }, [id]);
 
+
+// Loading state
   if (!product) return <p>Loading...</p>;
 
+// Add to cart handler that updates quantity if product already in cart, otherwise adds new item
   const handleAddToCart = () => {
     const existing = cart.find((item) => item.id === product.id);
 
@@ -63,7 +68,7 @@ function Product() {
 
   return (
     <div className="product-page">
-      {/* Image section */}
+      {/* Image section with thumbnails */}
       <div className="product-image">
         <img src={selectedImage} alt={product.title} />
 
@@ -80,7 +85,7 @@ function Product() {
         </div>
       </div>
 
-      {/* Details */}
+      {/* Product Details */}
       <div className="product-details">
         <p className="brand">{product.brand}</p>
         <h1>{product.title}</h1>
@@ -97,6 +102,7 @@ function Product() {
         <p className="price">${product.price}</p>
         <p className="description">{product.description}</p>
 
+{/* Quantity selector and Add to Cart and Add to Wishlist(Unused) button */}
         <div className="product-actions">
           <div className="quantity-selector">
             <button onClick={decrease}>−</button>

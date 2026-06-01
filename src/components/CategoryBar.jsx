@@ -1,6 +1,7 @@
 import "./CategoryBar.css";
 import { Link } from "react-router-dom";
 
+//* CategoryBar component for filtering products by category. Uses React Router's Link to update URL search parameters for category selection. */
 function CategoryBar({ categories, selectedCategory, }) {
   return (
     <div className="category-bar">

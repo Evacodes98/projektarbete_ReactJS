@@ -3,7 +3,8 @@ import "./Navbar.css";
 import CartBadge from "./CartBadge";
 import PersonIcon from "@mui/icons-material/Person";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useCart } from "../context/CartContext";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useCart } from "../context/UseCart";
 import { useEffect, useRef, useState } from "react";
 
 function Navbar() {
@@ -15,18 +16,25 @@ function Navbar() {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearch(localSearch);
-    }, 300);
+  /* Debounce: update global search term 300ms after user stops typing, and clear search if input is cleared */
+useEffect(() => {
+  if (localSearch === "") {
+    setSearch("");
+    return;
+  }
 
-    return () => clearTimeout(timer);
-  }, [localSearch, setSearch]);
+  const timer = setTimeout(() => {
+    setSearch(localSearch);
+  }, 300);
+
+  return () => clearTimeout(timer);
+}, [localSearch, setSearch]);
 
   const cartCount = cart.reduce((sum, item) => {
     return sum + item.quantity;
   }, 0);
 
+/* Filter products based on search term for dropdown suggestions, showing up to 5 results */
   const suggestions = products
     .filter((product) =>
       product.title.toLowerCase().includes(search.toLowerCase()),
@@ -40,6 +48,7 @@ function Navbar() {
       }
     }
 
+// Close dropdown when clicking outside of it
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
@@ -60,14 +69,12 @@ function Navbar() {
   return (
     <>
       <nav className="navbar">
-        {/* LEFT */}
         <div>
           <Link to="/" className="logo-link">
             <h2>Hush Home</h2>
           </Link>
         </div>
-
-        {/* CENTER SEARCH */}
+{/* Search input with dropdown suggestions and loading spinner */}
         <div className="InputContainer" ref={dropdownRef}>
           <input
             type="text"
@@ -76,6 +83,12 @@ function Navbar() {
             onChange={(e) => setLocalSearch(e.target.value)}
             className="input"
           />
+{/* Show loading spinner if search term has changed but results not yet updated */}
+          <div className="spinner-row">
+            {localSearch !== search && localSearch !== "" && (
+              <CircularProgress size={16} thickness={4} className="search-spinner" />
+            )}
+          </div>
 
           {search && (
             <div className="dropdown">
@@ -88,6 +101,7 @@ function Navbar() {
                     className="dropdown-item"
                     onClick={() => {
                       setSearch("");
+                      setLocalSearch("");
                       navigate(`/product/${item.id}`);
                     }}
                   >
@@ -104,7 +118,6 @@ function Navbar() {
           )}
         </div>
 
-        {/* RIGHT ICONS */}
         <div className="nav-icons">
           <button style={{ padding: "0px" }}>
             <PersonIcon sx={{ fontSize: 30 }} />
@@ -127,13 +140,11 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* BACKDROP */}
       <div
         className={`menu-backdrop ${menuOpen ? "show" : ""}`}
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* MOBILE MENU */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <button className="close-menu" onClick={() => setMenuOpen(false)}>
           ✕

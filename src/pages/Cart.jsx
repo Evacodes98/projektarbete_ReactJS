@@ -1,11 +1,11 @@
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/UseCart";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Cart() {
   const { cart, setCart } = useCart();
-
+//* Increase quantity of item in cart */
   const increase = (id) => {
     const updated = cart.map((item) =>
       item.id === id
@@ -15,6 +15,7 @@ function Cart() {
     setCart(updated);
   };
 
+//* Decrease quantity or remove item if quantity goes to 0 */
   const decrease = (id) => {
     const updated = cart
       .map((item) =>
@@ -27,6 +28,7 @@ function Cart() {
     setCart(updated);
   };
 
+//* Remove item from cart */
   const removeItem = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
@@ -35,7 +37,7 @@ function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
+//* Calculate total savings from discounts greater than 10%
   const totalSavings = cart.reduce((sum, item) => {
     if (!item.discountPercentage || item.discountPercentage <= 10) return sum;
 
@@ -50,7 +52,7 @@ function Cart() {
   return (
     <div className="cart-page">
       <h1>Your Cart</h1>
-
+{/* If cart is empty, show message and link to continue shopping. Otherwise, show cart items and summary */}
       {cart.length === 0 ? (
 <div className="empty-cart">
 
@@ -68,7 +70,7 @@ function Cart() {
       ) : (
         <>
           <div className="cart-list">
-
+{/* Display each cart item with quantity and total price, and the overall total */}
             {cart.map((item) => {
               const originalPrice =
                 item.price / (1 - item.discountPercentage / 100);
@@ -86,7 +88,7 @@ function Cart() {
                       <p className="sale-price">
                         ${item.price}
                       </p>
-
+{/* Show original price if discount is greater than 10% */}
                       {item.discountPercentage > 10 && (
                         <p className="original-price">
                           ${originalPrice.toFixed(2)}
@@ -105,7 +107,7 @@ function Cart() {
                         +
                       </button>
                     </div>
-
+{/* Remove item button */}
                     <button
                       className="remove-btn"
                       onClick={() => removeItem(item.id)}
@@ -118,7 +120,7 @@ function Cart() {
               );
             })}
           </div>
-
+{/* Cart summary with total price, savings, and checkout button */}
           <div className="cart-summary">
             <h2>Total: ${total.toFixed(2)}</h2>
 

@@ -10,13 +10,9 @@ const images = [
 
 function Hero() {
   const [index, setIndex] = useState(0);
-
+//* Slideshow hero implementation */
   const next = () => {
     setIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prev = () => {
-    setIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   useEffect(() => {
@@ -25,7 +21,7 @@ function Hero() {
   }, 5000);
 
   return () => clearInterval(interval);
-}, [index]);
+}, []);
 
   return (
 <div className="hero">
@@ -35,10 +31,13 @@ function Hero() {
       transform: `translateX(-${index * 100}%)`,
     }}
   >
+    {/* Map through images to create sliding effect */}
     {images.map((img, i) => (
       <img key={i} src={img} alt="hero" className="hero-img" />
     ))}
   </div>
+  
+  {/* Curved text component from ReactBits */}
 <CurvedLoop 
   marqueeText="New Product Drop ✦"
   speed={1.2}
@@ -48,13 +47,6 @@ function Hero() {
   className="custom-text-style"
 />
 
-  <button className="hero-btn left" onClick={prev}>
-    
-  </button>
-
-  <button className="hero-btn right" onClick={next}>
-    
-  </button>
 </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/UseCart";
 import { Link } from "react-router-dom";
 import "./Checkout.css";
 import { useState } from "react";
@@ -9,7 +9,7 @@ function Checkout() {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState({});
-
+/* Form state for shipping details and payment options */
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,7 +23,7 @@ function Checkout() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+// Form validation with error messages
   const validate = () => {
     const newErrors = {};
 
@@ -38,6 +38,7 @@ function Checkout() {
     return Object.keys(newErrors).length === 0;
   };
 
+// Handle form submission with validation and success state
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,9 +51,8 @@ function Checkout() {
     <>
       <div className="checkout-page">
         <h1>Checkout</h1>
-
+{/* Checkout form with shipping details and payment options, alongside an order summary */}
         <div className="checkout-grid">
-          {/* LEFT - FORM */}
           <form className="checkout-form" onSubmit={handleSubmit}>
             <h2>Shipping Details</h2>
 
@@ -115,7 +115,7 @@ function Checkout() {
             <button className="place-order-btn">Place Order</button>
           </form>
 
-          {/* RIGHT - SUMMARY */}
+{/* Display each cart item with quantity and total price, and the overall total */}
           <div className="checkout-summary">
             <h2>Order Summary</h2>
 
@@ -137,7 +137,7 @@ function Checkout() {
         </div>
       </div>
 
-      {/* MODAL (OUTSIDE PAGE CONTAINER) */}
+      {/* Modal pop-up after checkout */}
       {showSuccess && (
         <div className="modal-overlay">
           <div className="modal-box">

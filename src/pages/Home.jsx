@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/UseCart";
 import Hero from "../components/Hero";
 import CategoryBar from "../components/CategoryBar";
 import "./Home.css";
@@ -12,12 +12,14 @@ import { useSearchParams } from "react-router-dom";
 function Home() {
   const [searchParams] = useSearchParams();
 
+  // Get selected category from URL search params, default to "All"
 const selectedCategory =
   searchParams.get("category") || "All";
   const [products, setProducts] = useState([]);
 
   const { search } = useCart();
 
+// Categories for filtering
   const categories = [
     "All",
     "beauty",
@@ -28,6 +30,7 @@ const selectedCategory =
     "kitchen-accessories",
   ];
 
+  // Fetching products (Try/Catch for error handling) 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -41,7 +44,8 @@ const selectedCategory =
 
     fetchProducts();
   }, []);
-
+  
+// Filter products by selected category and search term
 const categoryFiltered =
   selectedCategory === "All"
     ? products

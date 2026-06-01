@@ -5,8 +5,10 @@ import Home from './pages/Home'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
-import { CartProvider } from './context/CartContext'
+import { CartProvider } from './context/CartProvider'
 
+
+// Main App component with routing and context provider
 function App() {
   return (
     <>

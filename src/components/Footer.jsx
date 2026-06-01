@@ -1,5 +1,6 @@
 import "./Footer.css";
 
+//* Footer component from Untitled UI. Static content only, no dynamic functionality implemented. */
 function Footer() {
   return (
     <footer className="footer">
@@ -49,7 +50,7 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Newsletter. Demo only */}
           <div className="footer-newsletter">
             <h4>Newsletter</h4>
 
